@@ -23,7 +23,7 @@ function TablaCompleta() {
 
   const formatCurrency = (value) => {
     if (isNaN(value)) return value;
-    return parseFloat(value).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' });
+    return parseFloat(value).toLocaleString('es-ES', { style: 'currency', currency: 'USD' });
   };
 
   return (

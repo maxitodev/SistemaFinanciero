@@ -250,27 +250,27 @@ function MacroImpactSimulator() {
             <tbody>
               <tr>
                 <td>Ventas netas de mercancía</td>
-                <td>{parseFloat(savedTable.ventasNetas).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedTable.ventasNetas).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Intereses ganados de clientes</td>
-                <td>{parseFloat(savedTable.interesesGanados).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedTable.interesesGanados).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Ingresos de propiedades arrendadas</td>
-                <td>{parseFloat(savedTable.ingresosArrendados).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedTable.ingresosArrendados).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Servicios</td>
-                <td>{parseFloat(savedTable.servicios).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedTable.servicios).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Otros ingresos</td>
-                <td>{parseFloat(savedTable.otrosIngresos).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedTable.otrosIngresos).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td><strong>Total de ingresos</strong></td>
-                <td><strong>{savedTable.totalIncome.toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</strong></td>
+                <td><strong>{savedTable.totalIncome.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</strong></td>
               </tr>
             </tbody>
           </table>
@@ -465,67 +465,67 @@ function MacroImpactSimulator() {
             <tbody>
               <tr>
                 <td>Costo de ventas</td>
-                <td>{parseFloat(savedCostosGastos.costoVentas).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.costoVentas).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Utilidad bruta</td>
-                <td>{parseFloat(savedCostosGastos.utilidadBruta).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.utilidadBruta).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Provisión para pérdidas crediticias</td>
-                <td>{parseFloat(savedCostosGastos.provisionPerdidas).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.provisionPerdidas).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Gastos de administración</td>
-                <td>{parseFloat(savedCostosGastos.gastosAdministracion).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.gastosAdministracion).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Total de costos y gastos</td>
-                <td>{parseFloat(savedCostosGastos.totalCostosGastos).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.totalCostosGastos).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Utilidad de operación</td>
-                <td>{parseFloat(savedCostosGastos.utilidadOperacion).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.utilidadOperacion).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Intereses a cargo</td>
-                <td>{parseFloat(savedCostosGastos.interesesCargo).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.interesesCargo).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Pérdida cambiaria</td>
-                <td>{parseFloat(savedCostosGastos.perdidaCambiaria).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.perdidaCambiaria).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Costos financieros</td>
-                <td>{parseFloat(savedCostosGastos.costosFinancieros).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.costosFinancieros).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Utilidad cambiaria</td>
-                <td>{parseFloat(savedCostosGastos.utilidadCambiaria).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.utilidadCambiaria).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Rendimientos sobre inversiones</td>
-                <td>{parseFloat(savedCostosGastos.rendimientosInversiones).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.rendimientosInversiones).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Ingresos financieros</td>
-                <td>{parseFloat(savedCostosGastos.ingresosFinancieros).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.ingresosFinancieros).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Participación en los resultados de asociadas</td>
-                <td>{parseFloat(savedCostosGastos.participacionResultados).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.participacionResultados).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Utilidad antes de impuestos</td>
-                <td>{parseFloat(savedCostosGastos.utilidadAntesImpuestos).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.utilidadAntesImpuestos).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Impuestos a la utilidad</td>
-                <td>{parseFloat(savedCostosGastos.impuestosUtilidad).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedCostosGastos.impuestosUtilidad).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td><strong>Utilidad neta consolidada</strong></td>
-                <td><strong>{parseFloat(savedCostosGastos.utilidadNetaConsolidada).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</strong></td>
+                <td><strong>{parseFloat(savedCostosGastos.utilidadNetaConsolidada).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</strong></td>
               </tr>
             </tbody>
           </table>
@@ -578,11 +578,11 @@ function MacroImpactSimulator() {
             <tbody>
               <tr>
                 <td>Valuación de instrumentos financieros contratados como coberturas de flujo de efectivo</td>
-                <td>{parseFloat(savedOtrasPartidas.valuacionCoberturas).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedOtrasPartidas.valuacionCoberturas).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Efecto de conversión por inversión en asociadas (Netos de impuestos)</td>
-                <td>{parseFloat(savedOtrasPartidas.efectoConversion).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedOtrasPartidas.efectoConversion).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
             </tbody>
           </table>
@@ -646,15 +646,15 @@ function MacroImpactSimulator() {
             <tbody>
               <tr>
                 <td>Cambios en el valor razonable de las inversiones de capital a valor razonable a través de otros resultados integrales (Netos de impuestos)</td>
-                <td>{parseFloat(otrasPartidasNoReclasificadas.cambiosValorRazonable).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(otrasPartidasNoReclasificadas.cambiosValorRazonable).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Remediciones del pasivo por beneficios definidos (Netas de impuestos)</td>
-                <td>{parseFloat(otrasPartidasNoReclasificadas.remedicionesPasivo).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(otrasPartidasNoReclasificadas.remedicionesPasivo).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td><strong>Utilidad integral consolidada</strong></td>
-                <td><strong>{parseFloat(otrasPartidasNoReclasificadas.utilidadIntegralConsolidada).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</strong></td>
+                <td><strong>{parseFloat(otrasPartidasNoReclasificadas.utilidadIntegralConsolidada).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</strong></td>
               </tr>
             </tbody>
           </table>
@@ -728,15 +728,15 @@ function MacroImpactSimulator() {
             <tbody>
               <tr>
                 <td>Propietarios de la controladora</td>
-                <td>{parseFloat(savedUtilidadNeta.propietariosControladora).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedUtilidadNeta.propietariosControladora).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Participación no controladora</td>
-                <td>{parseFloat(savedUtilidadNeta.participacionNoControladora).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedUtilidadNeta.participacionNoControladora).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Utilidad Neta</td>
-                <td>{parseFloat(savedUtilidadNeta.utilidadNeta).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedUtilidadNeta.utilidadNeta).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Utilidad por acción básica</td>
@@ -826,15 +826,15 @@ function MacroImpactSimulator() {
             <tbody>
               <tr>
                 <td>Propietarios de la controladora</td>
-                <td>{parseFloat(savedUtilidadIntegral.propietariosControladora).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedUtilidadIntegral.propietariosControladora).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Participación no controladora</td>
-                <td>{parseFloat(savedUtilidadIntegral.participacionNoControladora).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedUtilidadIntegral.participacionNoControladora).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Resultado integral total</td>
-                <td>{parseFloat(savedUtilidadIntegral.resultadoIntegralTotal).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedUtilidadIntegral.resultadoIntegralTotal).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
               <tr>
                 <td>Utilidad integral por acción básica</td>
@@ -842,7 +842,7 @@ function MacroImpactSimulator() {
               </tr>
               <tr>
                 <td>EBITDA</td>
-                <td>{parseFloat(savedUtilidadIntegral.ebitda).toLocaleString('es-ES', { style: 'currency', currency: 'MEX' })}</td>
+                <td>{parseFloat(savedUtilidadIntegral.ebitda).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</td>
               </tr>
             </tbody>
           </table>
