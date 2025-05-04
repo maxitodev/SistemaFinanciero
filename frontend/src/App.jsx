@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Routes, Route } from 'react-router-dom'; // Added imports
 import MacroImpactSimulator from './components/MacroImpactSimulator'; // Import the component
+import TablaCompleta from './components/TablaCompleta';
 import './App.css';
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
               }
             />
             <Route path="/simulador" element={<MacroImpactSimulator />} /> {/* Added route */}
+            <Route path="/tabla-completa" element={<TablaCompleta />} />
           </Routes>
         </>
       )}
