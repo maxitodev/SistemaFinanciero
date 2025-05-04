@@ -1,42 +1,359 @@
-#root {
-  max-width: 1280px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.app-container body {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* General styles */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f8f9fa;
+  color: #2d3436;
+}
+
+.app-container {
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 2rem;
+}
+
+/* General loading screen styles */
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 70vh;
+  min-height: 90vh;
+  background: linear-gradient(135deg, #007bff 0%, #0069e5 100%);
+  color: white;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
+  color: #2d3436; /* Contraste accesible */
+}
+
+/* Loader container */
+.finance-loader {
+  position: relative;
+  text-align: center;
+  max-width: 320px;
+  padding: 2rem;
+  border: 1px solid #dfe6e9; /* Añade un borde sutil */
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  background: #ffffff;
+}
+
+/* Animated logo */
+.animated-logo {
+  max-width: 250px;
+  margin-bottom: 2rem;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  animation: bounce 1.5s infinite; /* Nueva animación */
+  border: 4px solid #dfe6e9; /* Contorno circular */
+  border-radius: 50%; /* Hace el contorno circular */
+  overflow: hidden; /* Asegura que el contenido respete el borde */
+}
+
+/* Para animaciones Lottie (recomendado) */
+.lottie-animation {
+  width: 100%;
+  height: 100%;
+}
+
+/* O si prefieres un GIF tradicional */
+/*
+.animated-logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+*/
+
+/* Loading text */
+.loading-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color: #2d3436;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.3s forwards;
+  line-height: 1.5; /* Mejora la legibilidad */
+}
+
+/* Brand text */
+.brand {
+  color: #00d1ff;
+  font-weight: 700;
+  color: #0984e3;
+  text-transform: uppercase; /* Estilo más moderno */
+}
+
+/* Progress bar */
+.modern-progress {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0; /* Color más claro */
+  border-radius: 3px;
+  margin: 2rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-wave {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 123, 229, 0.8),
+    rgba(0, 209, 255, 0.8)
+  );
+  border-radius: 4px;
+  animation: move-wave 2s infinite linear;
+  position: absolute;
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(90deg, #0984e3, #74b9ff); /* Gradiente dinámico */
+  border-radius: 2px;
+  animation: waveProgress 2s ease-in-out infinite;
+}
+
+/* Status text */
+.status-text {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-size: 0.9rem;
+  color: #636e72;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.6s forwards;
+  font-style: italic; /* Estilo distintivo */
+}
+
+/* Main page styles */
+.main-page {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.main-header {
+  text-align: center;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #007bff 0%, #0069e5 100%);
+  color: white;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  margin-bottom: 2rem;
+}
+
+.main-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.main-header p {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.intro-section {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 2rem 0;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.intro-section h2 {
+  font-size: 1.8rem;
+  color: #2d3436;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.intro-section p {
+  font-size: 1rem;
+  color: #636e72;
+  line-height: 1.6;
+}
+
+.tools-section {
+  padding: 2rem;
+  background-color: #ffffff;
+  margin-bottom: 2rem;
+}
+
+.tools-section h2 {
+  font-size: 1.8rem;
+  color: #2d3436;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.tool-card {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.tool-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #0984e3;
+  margin-bottom: 0.5rem;
+}
+
+.tool-card p {
+  font-size: 1rem;
+  color: #636e72;
+  margin-bottom: 1rem;
+}
+
+.tool-card button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  background: #0984e3;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tool-card button:hover {
+  background-color: #0069e5;
+  background: #74b9ff;
+}
+
+.tool-link {
+  display: inline-block;
+  background: #0984e3;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.tool-link:hover {
+  background: #74b9ff;
+}
+
+.main-footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin-top: 2rem;
+  background: #f1f2f6;
+  color: #636e72;
+  font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes waveProgress {
+  0% { left: -30%; width: 30%; }
+  50% { width: 50%; }
+  100% { left: 100%; width: 30%; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes move-wave {
+  0% { width: 0%; }
+  50% { width: 100%; }
+  100% { width: 100%; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tool-card button {
+    width: 100%;
   }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Smooth Transitions */
+body,
+* {
+  transition: all 0.3s ease;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
