@@ -78,6 +78,84 @@
   background-color: #f8f9fa;
 }
 
+/* Estilos modernos para tablas */
+.result-section table,
+.generated-table table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-section th,
+.generated-table th {
+  background: linear-gradient(90deg, #0984e3, #74b9ff);
+  color: #fff;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.result-section td,
+.generated-table td {
+  padding: 0.8rem;
+  background-color: #fff;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.generated-table tr:hover td {
+  background-color: #f8f9fa;
+}
+
+/* Estilos modernos para tabla de variables de entrada */
+.input-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 1.5rem;
+}
+.input-table th {
+  background: linear-gradient(90deg, #0984e3, #74b9ff);
+  color: #fff;
+  padding: 1rem;
+  text-align: left;
+}
+.input-table td {
+  padding: 0.8rem;
+  background-color: #fff;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+/* Estilos para la tabla de variables de entrada (inputs) */
+.input-vars-table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.input-vars-table .row {
+  display: table-row;
+}
+.input-vars-table .cell {
+  display: table-cell;
+  border: 1px solid #dfe6e9;
+  padding: 0.8rem;
+  vertical-align: middle;
+}
+.input-vars-table .cell input {
+  width: 100%;
+  padding: 0.6rem;
+  border: none;
+  outline: none;
+}
+
 button {
   background-color: #0984e3;
   color: #ffffff;

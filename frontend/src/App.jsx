@@ -79,7 +79,7 @@ function App() {
                     </div>
                   </section>
                   <footer className="main-footer">
-                    <p>Desarrollado por Max Sánchez & Alvaro Ramírez</p>
+                    <p> </p>
                   </footer>
                 </div>
               }
