@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Routes, Route } from 'react-router-dom'; // Added imports
 import MacroImpactSimulator from './components/MacroImpactSimulator'; // Import the component
 import TablaCompleta from './components/TablaCompleta';
+import RazonesFinancieras from './components/RazonesFinancieras'; // Import the component
 import './App.css';
 
 function App() {
@@ -86,6 +87,7 @@ function App() {
             />
             <Route path="/simulador" element={<MacroImpactSimulator />} /> {/* Added route */}
             <Route path="/tabla-completa" element={<TablaCompleta />} />
+            <Route path="/razones-financieras" element={<RazonesFinancieras />} /> {/* Added route */}
           </Routes>
         </>
       )}

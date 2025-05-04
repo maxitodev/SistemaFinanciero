@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './TablaCompleta.css';
+import RazonesFinancieras from './RazonesFinancieras';
 
 function TablaCompleta() {
 	// Estado inicial con estructura unificada
@@ -11,6 +13,8 @@ function TablaCompleta() {
 		utilidadNeta: { propietariosControladora: '', participacionNoControladora: '', utilidadNeta: '', utilidadPorAccionBasica: '' },
 		utilidadIntegral: { propietariosControladora: '', participacionNoControladora: '', resultadoIntegralTotal: '', utilidadIntegralPorAccionBasica: '', ebitda: '' }
 	});
+
+	const navigate = useNavigate();
 
 	// Al montar, se carga desde localStorage o se hace merge de los datos antiguos
 	useEffect(() => {
@@ -39,8 +43,13 @@ function TablaCompleta() {
 
 	// Guarda los datos en localStorage
 	const handleSave = () => {
-		localStorage.setItem('mergedTable', JSON.stringify(data));
-		alert('Datos guardados.');
+		try {
+			localStorage.setItem('mergedTable', JSON.stringify(data));
+			navigate('/razones-financieras'); // Ensure this matches the route in App.jsx
+		} catch (error) {
+			console.error('Error saving data:', error);
+			alert('Hubo un error al guardar los datos. Por favor, inténtalo de nuevo.');
+		}
 	};
 
 	return (
