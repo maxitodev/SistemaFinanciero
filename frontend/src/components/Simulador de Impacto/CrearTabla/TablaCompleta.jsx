@@ -132,15 +132,6 @@ function TablaCompleta() {
 						</td>
 					</tr>
 					<tr>
-						<td>Utilidad bruta</td>
-						<td>
-							<input
-								value={data.costosGastos.utilidadBruta || ''}
-								onChange={e => handleChange('costosGastos', 'utilidadBruta', e.target.value)}
-							/>
-						</td>
-					</tr>
-					<tr>
 						<td>Provisión para pérdidas crediticias</td>
 						<td>
 							<input
@@ -387,6 +378,15 @@ function TablaCompleta() {
 							<input
 								value={data.utilidadIntegral.resultadoIntegralTotal || ''}
 								onChange={e => handleChange('utilidadIntegral', 'resultadoIntegralTotal', e.target.value)}
+							/>
+						</td>
+					</tr>
+					<tr>
+						<td>Utilidad bruta</td>
+						<td>
+							<input
+								value={data.costosGastos.utilidadBruta || ''}
+								onChange={e => handleChange('costosGastos', 'utilidadBruta', e.target.value)}
 							/>
 						</td>
 					</tr>
