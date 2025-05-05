@@ -42,6 +42,10 @@ function TablaCompleta() {
 
 	// Guarda los datos en localStorage
 	const handleSave = () => {
+		// Nueva ventana de confirmación
+		if (!window.confirm("¿Estás seguro? No podrás editar más tarde.")) {
+			return;
+		}
 		try {
 			localStorage.setItem('mergedTable', JSON.stringify(data));
 			navigate('/razones-financieras'); // Ensure this matches the route in App.jsx

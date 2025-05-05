@@ -1,0 +1,123 @@
+/* TablaCompleta.css */
+.tabla-completa {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.tabla-completa h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.tabla-completa table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-completa th, 
+.tabla-completa td {
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+}
+
+.tabla-completa th {
+  background-color: #2196F3;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+}
+
+.tabla-completa tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.tabla-completa tr:hover {
+  background-color: #f1f8ff;
+}
+
+.tabla-completa input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.tabla-completa input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.tabla-completa input::placeholder {
+  color: #90a4ae;
+}
+
+.tabla-completa button {
+  display: block;
+  margin: 2rem auto;
+  padding: 1rem 2.5rem;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-completa button:hover {
+  background-color: #1976D2;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tabla-completa {
+    padding: 0.5rem;
+  }
+  
+  .tabla-completa th, 
+  .tabla-completa td {
+    padding: 1rem;
+  }
+  
+  .tabla-completa input {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .tabla-completa button {
+    width: 100%;
+    margin: 1.5rem auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabla-completa th {
+    font-size: 0.8rem;
+  }
+  
+  .tabla-completa td {
+    font-size: 0.9rem;
+  }
+  
+  .tabla-completa input {
+    font-size: 0.9rem;
+  }
+}

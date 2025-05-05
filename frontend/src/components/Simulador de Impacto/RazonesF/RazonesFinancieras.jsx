@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './RazonesF.css'; 
 
 function RazonesFinancieras() {
 	const [data, setData] = useState(null);
@@ -60,20 +61,23 @@ function RazonesFinancieras() {
 
 	function calculateFinancialRatios(data) {
 		if (!data) return {};
-	
-		const ventasNetas = data.ingresos?.ventasNetas || 0;
-		const utilidadNeta = data.utilidadNeta?.utilidadNeta || 0;
-		const ebitda = data.utilidadIntegral?.ebitda || 0;
-		const activoTotal = data.balance?.activoTotal || 0;
-		const capitalContable = data.balance?.capitalContable || 0;
-	
-		return {
-			margenUtilidadNeta: (utilidadNeta / ventasNetas) * 100 || 0,
-			margenEBITDA: (ebitda / ventasNetas) * 100 || 0,
-			rendimientoActivo: (utilidadNeta / activoTotal) * 100 || 0,
-			produccionActivos: (ventasNetas / activoTotal) * 100 || 0,
-			rendimientoCapital: (utilidadNeta / capitalContable) * 100 || 0,
-		};
+
+			// Extraer las variables desde las secciones correctas y convertir a números
+			const ventasNetas = parseFloat(data.ingresos?.ventasNetas) || 0;
+			const utilidadNeta = parseFloat(data.utilidadNeta?.utilidadNeta) || 0;
+			const ebitda = parseFloat(data.utilidadIntegral?.ebitda) || 0;
+			// Tomar desde "Costos y Gastos"
+			const utilidadBruta = parseFloat(data.costosGastos?.utilidadBruta) || 0;
+			const utilidadOperacion = parseFloat(data.costosGastos?.utilidadOperacion) || 0;
+			const gastosFinancieros = parseFloat(data.costosGastos?.costosFinancieros) || 0;
+		
+			return {
+				margenUtilidadNeta: ventasNetas ? (utilidadNeta / ventasNetas) * 100 : 0,
+				margenEBITDA: ventasNetas ? (ebitda / ventasNetas) * 100 : 0,
+				margenBruto: ventasNetas ? (utilidadBruta / ventasNetas) * 100 : 0,
+				margenOperacion: ventasNetas ? (utilidadOperacion / ventasNetas) * 100 : 0,
+				razonCoberturaIntereses: gastosFinancieros ? utilidadOperacion / gastosFinancieros : 0,
+			};
 	}
 	
 	const financialRatios = calculateFinancialRatios(data);
@@ -83,64 +87,68 @@ function RazonesFinancieras() {
 	}
 
 	return (
-		<div>
+		<div className="razonesfinancieras">
 			<h1>Estado de Resultados</h1>
-			<table>
-				<tbody>
-					{/* Render saved data dynamically with user-friendly labels */}
-					{Object.entries(data).map(([section, values]) => (
-						<React.Fragment key={section}>
-							<tr>
-								<th colSpan="2">{sectionTitles[section] || section}</th>
-							</tr>
-							{Object.entries(values).map(([key, value]) => (
-								<tr key={key}>
-									<td>{labels[key] || key}</td>
-									<td>{value}</td>
+			<div className="financial-tables-container"> {/* Added container */}
+				<table className="estado-resultados-table">
+					<tbody>
+						{/* Render saved data dynamically with user-friendly labels */}
+						{Object.entries(data).map(([section, values]) => (
+							<React.Fragment key={section}>
+								<tr>
+									<th colSpan="2">{sectionTitles[section] || section}</th>
 								</tr>
-							))}
-						</React.Fragment>
-					))}
-				</tbody>
-			</table>
+								{Object.entries(values).map(([key, value]) => (
+									<tr key={key}>
+										<td>{labels[key] || key}</td>
+										<td>{value}</td>
+									</tr>
+								))}
+							</React.Fragment>
+						))}
+					</tbody>
+				</table>
 
-			<h2>Razones Financieras</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Razón</th>
-						<th>Resultado</th>
-						<th>Parámetro de Referencia</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Margen de Utilidad Neta (%)</td>
-						<td>{financialRatios.margenUtilidadNeta.toFixed(2)}</td>
-						<td>≥ 15%</td>
-					</tr>
-					<tr>
-						<td>Margen EBITDA (%)</td>
-						<td>{financialRatios.margenEBITDA.toFixed(2)}</td>
-						<td>≥ 15%</td>
-					</tr>
-					<tr>
-						<td>Rendimiento del Activo (ROA) (%)</td>
-						<td>{financialRatios.rendimientoActivo.toFixed(2)}</td>
-						<td>≥ 15%</td>
-					</tr>
-					<tr>
-						<td>Producción de los Activos (%)</td>
-						<td>{financialRatios.produccionActivos.toFixed(2)}</td>
-						<td>≥ 20%</td>
-					</tr>
-					<tr>
-						<td>Rendimiento del Capital (ROE) (%)</td>
-						<td>{financialRatios.rendimientoCapital.toFixed(2)}</td>
-						<td>≥ 15%</td>
-					</tr>
-				</tbody>
-			</table>
+				<div className="razones-financieras-section"> {/* Added wrapper for title */}
+					<h2>Razones Financieras</h2> {/* Added title */}
+					<table className="razones-financieras-table"> {/* Added class */}
+						<thead>
+							<tr>
+								<th>Razón</th>
+								<th>Resultado</th>
+								<th>Parámetro de Referencia</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Margen de Utilidad Neta (%)</td>
+								<td>{financialRatios.margenUtilidadNeta.toFixed(2)}</td>
+								<td>≥ 15%</td>
+							</tr>
+							<tr>
+								<td>Margen EBITDA (%)</td>
+								<td>{financialRatios.margenEBITDA.toFixed(2)}</td>
+								<td>≥ 15%</td>
+							</tr>
+							<tr>
+								<td>Margen Bruto (%)</td>
+								<td>{financialRatios.margenBruto.toFixed(2)}</td>
+								<td>≥ 25%</td>
+							</tr>
+							<tr>
+								<td>Margen de Operación (%)</td>
+								<td>{financialRatios.margenOperacion.toFixed(2)}</td>
+								<td>≥ 20%</td>
+							</tr>
+							<tr>
+								<td>Razón de Cobertura de Intereses</td>
+								<td>{financialRatios.razonCoberturaIntereses.toFixed(2)}</td>
+								<td>{'> 1'}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	);
 }

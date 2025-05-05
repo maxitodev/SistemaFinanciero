@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Routes, Route } from 'react-router-dom'; // Added imports
-import MacroImpactSimulator from './components/MacroImpactSimulator'; // Import the component
-import TablaCompleta from './components/TablaCompleta';
-import RazonesFinancieras from './components/RazonesFinancieras'; // Import the component
+import MacroImpactSimulator from './components/Simulador de Impacto/Simulador'; // Import the component
+import TablaCompleta from './components/Simulador de Impacto/CrearTabla/TablaCompleta';
+import RazonesFinancieras from './components/Simulador de Impacto/RazonesF/RazonesFinancieras'; // Import the component
 import './App.css';
 
 function App() {

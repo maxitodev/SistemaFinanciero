@@ -1,0 +1,145 @@
+/* RazonesFinancieras.css */
+.razonesfinancieras .container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.razonesfinancieras h1,
+.razonesfinancieras h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.razonesfinancieras h1 {
+    font-size: 2.2rem;
+    border-bottom: 3px solid #2196F3;
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+.razonesfinancieras h2 {
+    font-size: 1.8rem;
+    color: #1976D2;
+    margin-top: 3rem;
+}
+
+.razonesfinancieras table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+.razonesfinancieras th,
+.razonesfinancieras td {
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+}
+
+.razonesfinancieras th {
+    background-color: #2196F3;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.razonesfinancieras tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Estilo especial para la tabla de razones financieras */
+.razonesfinancieras table:last-of-type th {
+    background-color: #2196F3;
+}
+
+.razonesfinancieras td:last-child {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+/* Estilos para los resultados numéricos */
+.razonesfinancieras .ratio-value {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: #2196F3;
+    text-align: right;
+}
+
+.razonesfinancieras .parametro-reference {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Indicadores visuales */
+.razonesfinancieras .positive {
+    color: #4CAF50;
+}
+
+.razonesfinancieras .negative {
+    color: #F44336;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .razonesfinancieras .container {
+      padding: 0.5rem;
+    }
+    
+    .razonesfinancieras th,
+    .razonesfinancieras td {
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .razonesfinancieras h1 {
+      font-size: 1.8rem;
+    }
+    
+    .razonesfinancieras h2 {
+      font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .razonesfinancieras th,
+    .razonesfinancieras td {
+      padding: 0.8rem;
+    }
+    
+    .razonesfinancieras .ratio-value {
+      font-size: 0.9rem;
+    }
+    
+    .razonesfinancieras .parametro-reference {
+      font-size: 0.8rem;
+    }
+}
+
+.financial-tables-container {
+	display: flex;
+	gap: 2rem; /* Espacio entre las tablas */
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.estado-resultados-table,
+.razones-financieras-table {
+	width: 48%; /* Ajusta el ancho de las tablas */
+	border-collapse: collapse;
+}
+
+@media (max-width: 768px) {
+	.financial-tables-container {
+		flex-direction: column; /* Cambia a diseño vertical en pantallas pequeñas */
+	}
+	.estado-resultados-table,
+	.razones-financieras-table {
+		width: 100%; /* Ocupan todo el ancho */
+	}
+}
