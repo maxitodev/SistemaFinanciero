@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TablaCompleta.css';
-import RazonesFinancieras from './RazonesFinancieras';
 
 function TablaCompleta() {
 	// Estado inicial con estructura unificada
