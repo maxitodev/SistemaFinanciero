@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -40,7 +40,7 @@ function App() {
               <div className="progress-wave"></div>
             </div>
             
-            <p className="status-text">By Equipo 2</p>
+            <p className="status-text">By MacroView</p>
           </div>
         </div>
       ) : (
@@ -80,7 +80,7 @@ function App() {
                     </div>
                   </section>
                   <footer className="main-footer">
-                    <p> </p>
+                    <p> By MacroView 2025 </p>
                   </footer>
                 </div>
               }

@@ -85,6 +85,13 @@
     color: #F44336;
 }
 
+/* Estilos para los valores modificados en la tabla */
+.razonesfinancieras table u {
+    text-decoration: underline;
+    color: #d9534f; /* Rojo para destacar */
+    font-weight: bold;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .razonesfinancieras .container {
@@ -142,4 +149,125 @@
 	.razones-financieras-table {
 		width: 100%; /* Ocupan todo el ancho */
 	}
+}
+
+.simular-btn {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	background-color: #2196F3;
+	color: white;
+	border: none;
+	padding: 0.8rem 1.2rem;
+	font-size: 1rem;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.simular-btn:hover {
+	background-color: #1976D2;
+}
+
+/* Modificaciones para modernizar el apartado de "Ingrese Variables Macroeconómicas" */
+.simulacion-form {
+    margin-top: 2vh;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    border: none; /* se elimina el borde */
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 2rem auto;
+}
+.simulacion-form:hover {
+    
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+.simulacion-form h2 {
+    
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #34495e;
+    text-align: center;
+    border-bottom: none;
+}
+.simulacion-form form {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.simulacion-form label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+.simulacion-form input {
+    padding: 0.8rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 0.5rem;
+}
+.simulacion-form input:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+    outline: none;
+}
+.ver-simulacion-btn {
+    margin-top: 2rem;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.ver-simulacion-btn:hover {
+    background-color: #1e8449;
+    transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+	.simular-btn {
+		position: static;
+		margin: 1rem auto;
+		display: block;
+	}
+}
+
+/* New styling for Variables Macroeconómicas Utilizadas */
+.simulation-macro-vars {
+    padding: 1rem;
+    margin: 1.5rem auto;
+    background: linear-gradient(90deg, rgba(33,150,243,0.15), rgba(33,150,243,0));
+    border: 2px solid #2196F3;
+    border-radius: 8px;
+}
+
+.simulation-macro-vars h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #1976D2;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #2196F3;
+    padding-bottom: 0.5rem;
+}
+
+.simulation-macro-vars ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+    margin: 0;
+}
+
+.simulation-macro-vars li {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
 }
