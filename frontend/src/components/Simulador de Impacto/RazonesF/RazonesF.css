@@ -267,7 +267,47 @@
 }
 
 .simulation-macro-vars li {
+    text-align: left;
     font-size: 1.1rem;
     color: #2c3e50;
     margin-bottom: 0.5rem;
+}
+
+/* Estilos modernos para el apartado Efecto de Variables Macroeconómicos */
+.macro-explanation {
+    background: #f4f9ff;
+    border-left: 4px solid #2196F3;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+.macro-explanation h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #1976D2;
+}
+
+.macro-explanation h3 {
+    font-size: 1.4rem;
+    text-align: left;
+    margin-top: 1rem;
+    color: #2c3e50;
+}
+
+.macro-explanation p {
+    text-align: justify;
+    line-height: 1.5;
+    margin: 0.5rem 0;
+}
+
+@media (max-width: 480px) {
+    .macro-explanation {
+        padding: 1rem;
+        font-size: 1rem;
+    }
 }

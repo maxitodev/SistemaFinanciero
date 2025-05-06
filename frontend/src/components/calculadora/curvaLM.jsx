@@ -16,6 +16,7 @@ function LMCalculator() {
 
   const [graphData, setGraphData] = useState(null); // Datos para la gráfica
   const [explanation, setExplanation] = useState(''); // Explicación del cálculo
+  const [LMResult, setLMResult] = useState('');
 
   const calculateLM = () => {
     try {
@@ -58,6 +59,10 @@ function LMCalculator() {
         ],
       });
   
+      // Seleccionar el paso medio (Y = 100) si existe o el del medio del array
+      const middleStep = steps.find(s => s.Y === 100) || steps[Math.floor(steps.length / 2)];
+      setLMResult(middleStep.i);
+  
       setExplanation(`
         La curva LM se calculó utilizando la ecuación de equilibrio del mercado de dinero:
         M / P = kY + hi
@@ -97,150 +102,158 @@ function LMCalculator() {
   };
 
   return (
-    <div className="container">
-      <h2>Calculadora de la Curva LM</h2>
+    <div className="lm-calculator">
+      <div className="container">
+        <h2>Calculadora de la Curva LM</h2>
+        <p>Utiliza esta calculadora para ingresar parámetros y visualizar la relación entre ingreso y tasa de interés.</p>
 
-      {/* Sección de entrada de datos */}
-      <div className="input-section">
-        <h3>Ingrese los datos:</h3>
-        <div className="input-list">
-          {Object.keys(params).map(key => (
-            <div key={key} className="input-group">
-              <label>
-                {key === 'M' && 'M (Oferta monetaria):'}
-                {key === 'P' && 'P (Nivel de precios):'}
-                {key === 'k' && 'k (Sensibilidad de la demanda de dinero al ingreso):'}
-                {key === 'h' && 'h (Sensibilidad de la demanda de dinero a la tasa):'}
-              </label>
-              <input
-                type="number"
-                value={params[key]}
-                onChange={e => setParams({ ...params, [key]: e.target.value })}
-              />
+        {/* Sección de entrada de datos */}
+        <div className="input-section">
+          <h3>Ingrese los datos:</h3>
+          <div className="input-list">
+            {Object.keys(params).map(key => (
+              <div key={key} className="input-group">
+                <label>
+                  {key === 'M' && 'M (Oferta monetaria):'}
+                  {key === 'P' && 'P (Nivel de precios):'}
+                  {key === 'k' && 'k (Sensibilidad de la demanda de dinero al ingreso):'}
+                  {key === 'h' && 'h (Sensibilidad de la demanda de dinero a la tasa):'}
+                </label>
+                <input
+                  type="number"
+                  value={params[key]}
+                  onChange={e => setParams({ ...params, [key]: e.target.value })}
+                />
+              </div>
+            ))}
+          </div>
+          <button onClick={calculateLM}>Calcular LM</button>
+          {LMResult !== '' && (
+            <div className="result-section">
+              <h3>Resultado LM: i = {LMResult}</h3>
             </div>
-          ))}
+          )}
         </div>
-        <button onClick={calculateLM}>Calcular LM</button>
+
+        {/* Sección de gráfica */}
+        {graphData && (
+          <div className="graph-section">
+            <h3>Gráfica de la Curva LM</h3>
+            <Line
+              data={graphData}
+              options={{
+                plugins: {
+                  legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                      font: {
+                        size: 14, // Tamaño de la fuente de la leyenda
+                        family: 'Arial', // Fuente de la leyenda
+                      },
+                      color: '#333', // Color del texto de la leyenda
+                    },
+                  },
+                  tooltip: {
+                    enabled: true,
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)', // Fondo del tooltip
+                    titleFont: {
+                      size: 14,
+                      family: 'Arial',
+                    },
+                    bodyFont: {
+                      size: 12,
+                      family: 'Arial',
+                    },
+                    bodyColor: '#fff', // Color del texto del tooltip
+                  },
+                },
+                layout: {
+                  padding: {
+                    top: 20,
+                    bottom: 20,
+                    left: 20,
+                    right: 20,
+                  },
+                },
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: 'Tasa de interés (i)', // Ahora i está en el eje X
+                      font: {
+                        size: 16, // Tamaño de la fuente
+                        family: 'Arial', // Fuente del título
+                        weight: 'bold', // Negrita
+                      },
+                      color: '#333', // Color del texto
+                    },
+                    grid: {
+                      color: 'rgba(200, 200, 200, 0.3)', // Color de las líneas de la cuadrícula
+                    },
+                    ticks: {
+                      font: {
+                        size: 12,
+                        family: 'Arial',
+                      },
+                      color: '#333', // Color de las etiquetas
+                    },
+                  },
+                  y: {
+                    title: {
+                      display: true,
+                      text: 'Ingreso (Y)', // Ahora Y está en el eje Y
+                      font: {
+                        size: 16, // Tamaño de la fuente
+                        family: 'Arial', // Fuente del título
+                        weight: 'bold', // Negrita
+                      },
+                      color: '#333', // Color del texto
+                    },
+                    grid: {
+                      color: 'rgba(200, 200, 200, 0.3)', // Color de las líneas de la cuadrícula
+                    },
+                    ticks: {
+                      font: {
+                        size: 12,
+                        family: 'Arial',
+                      },
+                      color: '#333', // Color de las etiquetas
+                    },
+                  },
+                },
+                elements: {
+                  line: {
+                    borderWidth: 3, // Grosor de la línea
+                    borderColor: '#28a745', // Color de la línea (verde profesional)
+                    tension: 0.4, // Suavizar la línea
+                  },
+                  point: {
+                    radius: 5, // Tamaño de los puntos
+                    backgroundColor: '#28a745', // Color de los puntos
+                    borderWidth: 2, // Grosor del borde de los puntos
+                    borderColor: '#fff', // Color del borde de los puntos
+                  },
+                },
+                animation: {
+                  duration: 1000, // Duración de la animación en milisegundos
+                  easing: 'easeInOutQuad', // Tipo de animación
+                },
+                responsive: true, // Ajuste automático al tamaño del contenedor
+                maintainAspectRatio: true, // Mantener la relación de aspecto
+              }}
+            />
+          </div>
+        )}
+
+        {/* Sección de explicación */}
+        {explanation && (
+          <div className="explanation-section">
+            <h3>Explicación del cálculo:</h3>
+            <p style={{ whiteSpace: 'pre-line' }}>{explanation}</p>
+          </div>
+        )}
       </div>
-
-      {/* Sección de gráfica */}
-      {graphData && (
-        <div className="graph-section">
-          <h3>Gráfica de la Curva LM</h3>
-          <Line
-  data={graphData}
-  options={{
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-        labels: {
-          font: {
-            size: 14, // Tamaño de la fuente de la leyenda
-            family: 'Arial', // Fuente de la leyenda
-          },
-          color: '#333', // Color del texto de la leyenda
-        },
-      },
-      tooltip: {
-        enabled: true,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)', // Fondo del tooltip
-        titleFont: {
-          size: 14,
-          family: 'Arial',
-        },
-        bodyFont: {
-          size: 12,
-          family: 'Arial',
-        },
-        bodyColor: '#fff', // Color del texto del tooltip
-      },
-    },
-    layout: {
-      padding: {
-        top: 20,
-        bottom: 20,
-        left: 20,
-        right: 20,
-      },
-    },
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: 'Tasa de interés (i)', // Ahora i está en el eje X
-          font: {
-            size: 16, // Tamaño de la fuente
-            family: 'Arial', // Fuente del título
-            weight: 'bold', // Negrita
-          },
-          color: '#333', // Color del texto
-        },
-        grid: {
-          color: 'rgba(200, 200, 200, 0.3)', // Color de las líneas de la cuadrícula
-        },
-        ticks: {
-          font: {
-            size: 12,
-            family: 'Arial',
-          },
-          color: '#333', // Color de las etiquetas
-        },
-      },
-      y: {
-        title: {
-          display: true,
-          text: 'Ingreso (Y)', // Ahora Y está en el eje Y
-          font: {
-            size: 16, // Tamaño de la fuente
-            family: 'Arial', // Fuente del título
-            weight: 'bold', // Negrita
-          },
-          color: '#333', // Color del texto
-        },
-        grid: {
-          color: 'rgba(200, 200, 200, 0.3)', // Color de las líneas de la cuadrícula
-        },
-        ticks: {
-          font: {
-            size: 12,
-            family: 'Arial',
-          },
-          color: '#333', // Color de las etiquetas
-        },
-      },
-    },
-    elements: {
-      line: {
-        borderWidth: 3, // Grosor de la línea
-        borderColor: '#28a745', // Color de la línea (verde profesional)
-        tension: 0.4, // Suavizar la línea
-      },
-      point: {
-        radius: 5, // Tamaño de los puntos
-        backgroundColor: '#28a745', // Color de los puntos
-        borderWidth: 2, // Grosor del borde de los puntos
-        borderColor: '#fff', // Color del borde de los puntos
-      },
-    },
-    animation: {
-      duration: 1000, // Duración de la animación en milisegundos
-      easing: 'easeInOutQuad', // Tipo de animación
-    },
-    responsive: true, // Ajuste automático al tamaño del contenedor
-    maintainAspectRatio: true, // Mantener la relación de aspecto
-  }}
-/>
-        </div>
-      )}
-
-      {/* Sección de explicación */}
-      {explanation && (
-        <div className="explanation-section">
-          <h3>Explicación del cálculo:</h3>
-          <p style={{ whiteSpace: 'pre-line' }}>{explanation}</p>
-        </div>
-      )}
     </div>
   );
 }

@@ -97,33 +97,42 @@ function DACombined() {
   };
 
   return (
-    <div className="container">
+    <div className="da-container">
       <h2>Calculadora de Demanda Agregada (DA)</h2>
+      <p>Usa esta calculadora para ingresar parámetros económicos y visualizar el impacto en la demanda agregada.</p>
 
       <div className="input-section">
         <h3>Ingrese los datos:</h3>
         <div className="input-list">
-          {Object.keys(params).map(key => (
-            <div key={key} className="input-group">
-              <label>
-                {key === 'C0' && 'C0 (Consumo autónomo):'}
-                {key === 'b' && 'b (Propensión marginal a consumir):'}
-                {key === 'TR' && 'TR (Transferencias del gobierno):'}
-                {key === 't' && 't (Tasa impositiva):'}
-                {key === 'G' && 'G (Gasto público):'}
-                {key === 'I0' && 'I0 (Inversión autónoma):'}
-                {key === 'I1' && 'I1 (Sensibilidad de la inversión a la tasa de interés):'}
-                {key === 'i' && 'i (Tasa de interés):'}
-              </label>
-              <input
-                type="number"
-                value={params[key]}
-                onChange={e => setParams({ ...params, [key]: e.target.value })}
-              />
-            </div>
-          ))}
+          {Object.keys(params)
+            .filter(key => key !== 'DA') // Se excluye el campo de resultado
+            .map(key => (
+              <div key={key} className="input-group">
+                <label>
+                  {key === 'C0' && 'C0 (Consumo autónomo):'}
+                  {key === 'b' && 'b (Propensión marginal a consumir):'}
+                  {key === 'TR' && 'TR (Transferencias del gobierno):'}
+                  {key === 't' && 't (Tasa impositiva):'}
+                  {key === 'G' && 'G (Gasto público):'}
+                  {key === 'I0' && 'I0 (Inversión autónoma):'}
+                  {key === 'I1' && 'I1 (Sensibilidad de la inversión a la tasa de interés):'}
+                  {key === 'i' && 'i (Tasa de interés):'}
+                </label>
+                <input
+                  type="number"
+                  value={params[key]}
+                  onChange={e => setParams({ ...params, [key]: e.target.value })}
+                />
+              </div>
+            ))
+          }
         </div>
         <button onClick={calculateDA}>Calcular DA</button>
+        {params.DA !== '' && (
+          <div className="result-section">
+            <h3>Resultado DA: {params.DA}</h3>
+          </div>
+        )}
       </div>
 
       {graphData && (

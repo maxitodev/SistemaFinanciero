@@ -19,6 +19,7 @@ function ISCalculator() {
 
   const [graphData, setGraphData] = useState(null); // Datos para la gráfica
   const [explanation, setExplanation] = useState(''); // Explicación del cálculo
+  const [ISResult, setISResult] = useState('');
 
   const calculateIS = () => {
     try {
@@ -51,6 +52,9 @@ function ISCalculator() {
           },
         ],
       });
+
+      // Asumir el resultado para i = 0 (primer elemento)
+      setISResult(yValues[0]);
 
       // Generar explicación detallada del cálculo
       const steps = iValues.map(i => {
@@ -117,153 +121,161 @@ function ISCalculator() {
   };
 
   return (
-    <div className="container">
-      <h2>Calculadora de la Curva IS</h2>
+    <div className="is-calculator">
+      <div className="container">
+        <h2>Calculadora de la Curva IS</h2>
+        <p>Utiliza esta calculadora para ingresar parámetros y visualizar el equilibrio del mercado de bienes.</p>
 
-      {/* Sección de entrada de datos */}
-      <div className="input-section">
-        <h3>Ingrese los datos:</h3>
-        <div className="input-list">
-          {Object.keys(params).map(key => (
-            <div key={key} className="input-group">
-              <label>
-                {key === 'C0' && 'C0 (Consumo autónomo):'}
-                {key === 'b' && 'b (Propensión marginal a consumir):'}
-                {key === 'TR' && 'TR (Transferencias del gobierno):'}
-                {key === 't' && 't (Tasa impositiva):'}
-                {key === 'G' && 'G (Gasto público):'}
-                {key === 'I0' && 'I0 (Inversión autónoma):'}
-                {key === 'I1' && 'I1 (Sensibilidad de la inversión a la tasa de interés):'}
-              </label>
-              <input
-                type="number"
-                value={params[key]}
-                onChange={e => setParams({ ...params, [key]: e.target.value })}
-              />
+        {/* Sección de entrada de datos */}
+        <div className="input-section">
+          <h3>Ingrese los datos:</h3>
+          <div className="input-list">
+            {Object.keys(params).map(key => (
+              <div key={key} className="input-group">
+                <label>
+                  {key === 'C0' && 'C0 (Consumo autónomo):'}
+                  {key === 'b' && 'b (Propensión marginal a consumir):'}
+                  {key === 'TR' && 'TR (Transferencias del gobierno):'}
+                  {key === 't' && 't (Tasa impositiva):'}
+                  {key === 'G' && 'G (Gasto público):'}
+                  {key === 'I0' && 'I0 (Inversión autónoma):'}
+                  {key === 'I1' && 'I1 (Sensibilidad de la inversión a la tasa de interés):'}
+                </label>
+                <input
+                  type="number"
+                  value={params[key]}
+                  onChange={e => setParams({ ...params, [key]: e.target.value })}
+                />
+              </div>
+            ))}
+          </div>
+          <button onClick={calculateIS}>Calcular IS</button>
+          {ISResult !== '' && (
+            <div className="result-section">
+              <h3>Resultado IS: Y = {ISResult}</h3>
             </div>
-          ))}
+          )}
         </div>
-        <button onClick={calculateIS}>Calcular IS</button>
+
+        {/* Sección de gráfica */}
+        {graphData && (
+          <div className="graph-section">
+            <h3>Gráfica de la Curva IS</h3>
+            <Line
+              data={graphData}
+              options={{
+                plugins: {
+                  legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                      font: {
+                        size: 14, // Tamaño de la fuente de la leyenda
+                        family: 'Arial', // Fuente de la leyenda
+                      },
+                      color: '#333', // Color del texto de la leyenda
+                    },
+                  },
+                  tooltip: {
+                    enabled: true,
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)', // Fondo del tooltip
+                    titleFont: {
+                      size: 14,
+                      family: 'Arial',
+                    },
+                    bodyFont: {
+                      size: 12,
+                      family: 'Arial',
+                    },
+                    bodyColor: '#fff', // Color del texto del tooltip
+                  },
+                },
+                layout: {
+                  padding: {
+                    top: 20,
+                    bottom: 20,
+                    left: 20,
+                    right: 20,
+                  },
+                },
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: 'Tasa de interés (i)', // Nombre del eje X
+                      font: {
+                        size: 16, // Tamaño de la fuente
+                        family: 'Arial', // Fuente del título
+                        weight: 'bold', // Negrita
+                      },
+                      color: '#333', // Color del texto
+                    },
+                    grid: {
+                      color: 'rgba(200, 200, 200, 0.3)', // Color de las líneas de la cuadrícula
+                    },
+                    ticks: {
+                      font: {
+                        size: 12,
+                        family: 'Arial',
+                      },
+                      color: '#333', // Color de las etiquetas
+                    },
+                  },
+                  y: {
+                    title: {
+                      display: true,
+                      text: 'Ingreso (Y)', // Nombre del eje Y
+                      font: {
+                        size: 16, // Tamaño de la fuente
+                        family: 'Arial', // Fuente del título
+                        weight: 'bold', // Negrita
+                      },
+                      color: '#333', // Color del texto
+                    },
+                    grid: {
+                      color: 'rgba(200, 200, 200, 0.3)', // Color de las líneas de la cuadrícula
+                    },
+                    ticks: {
+                      font: {
+                        size: 12,
+                        family: 'Arial',
+                      },
+                      color: '#333', // Color de las etiquetas
+                    },
+                  },
+                },
+                elements: {
+                  line: {
+                    borderWidth: 3, // Grosor de la línea
+                    borderColor: '#007bff', // Color de la línea
+                    tension: 0.4, // Suavizar la línea
+                  },
+                  point: {
+                    radius: 5, // Tamaño de los puntos
+                    backgroundColor: '#007bff', // Color de los puntos
+                    borderWidth: 2, // Grosor del borde de los puntos
+                    borderColor: '#fff', // Color del borde de los puntos
+                  },
+                },
+                animation: {
+                  duration: 1000, // Duración de la animación en milisegundos
+                  easing: 'easeInOutQuad', // Tipo de animación
+                },
+                responsive: true, // Ajuste automático al tamaño del contenedor
+                maintainAspectRatio: true, // Mantener la relación de aspecto
+              }}
+            />
+          </div>
+        )}
+
+        {/* Sección de explicación */}
+        {explanation && (
+          <div className="explanation-section">
+            <h3>Explicación del cálculo:</h3>
+            <p style={{ whiteSpace: 'pre-line' }}>{explanation}</p>
+          </div>
+        )}
       </div>
-
-      {/* Sección de gráfica */}
-      {graphData && (
-  <div className="graph-section">
-    <h3>Gráfica de la Curva IS</h3>
-    <Line
-  data={graphData}
-  options={{
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-        labels: {
-          font: {
-            size: 14, // Tamaño de la fuente de la leyenda
-            family: 'Arial', // Fuente de la leyenda
-          },
-          color: '#333', // Color del texto de la leyenda
-        },
-      },
-      tooltip: {
-        enabled: true,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)', // Fondo del tooltip
-        titleFont: {
-          size: 14,
-          family: 'Arial',
-        },
-        bodyFont: {
-          size: 12,
-          family: 'Arial',
-        },
-        bodyColor: '#fff', // Color del texto del tooltip
-      },
-    },
-    layout: {
-      padding: {
-        top: 20,
-        bottom: 20,
-        left: 20,
-        right: 20,
-      },
-    },
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: 'Tasa de interés (i)', // Nombre del eje X
-          font: {
-            size: 16, // Tamaño de la fuente
-            family: 'Arial', // Fuente del título
-            weight: 'bold', // Negrita
-          },
-          color: '#333', // Color del texto
-        },
-        grid: {
-          color: 'rgba(200, 200, 200, 0.3)', // Color de las líneas de la cuadrícula
-        },
-        ticks: {
-          font: {
-            size: 12,
-            family: 'Arial',
-          },
-          color: '#333', // Color de las etiquetas
-        },
-      },
-      y: {
-        title: {
-          display: true,
-          text: 'Ingreso (Y)', // Nombre del eje Y
-          font: {
-            size: 16, // Tamaño de la fuente
-            family: 'Arial', // Fuente del título
-            weight: 'bold', // Negrita
-          },
-          color: '#333', // Color del texto
-        },
-        grid: {
-          color: 'rgba(200, 200, 200, 0.3)', // Color de las líneas de la cuadrícula
-        },
-        ticks: {
-          font: {
-            size: 12,
-            family: 'Arial',
-          },
-          color: '#333', // Color de las etiquetas
-        },
-      },
-    },
-    elements: {
-      line: {
-        borderWidth: 3, // Grosor de la línea
-        borderColor: '#007bff', // Color de la línea
-        tension: 0.4, // Suavizar la línea
-      },
-      point: {
-        radius: 5, // Tamaño de los puntos
-        backgroundColor: '#007bff', // Color de los puntos
-        borderWidth: 2, // Grosor del borde de los puntos
-        borderColor: '#fff', // Color del borde de los puntos
-      },
-    },
-    animation: {
-      duration: 1000, // Duración de la animación en milisegundos
-      easing: 'easeInOutQuad', // Tipo de animación
-    },
-    responsive: true, // Ajuste automático al tamaño del contenedor
-    maintainAspectRatio: true, // Mantener la relación de aspecto
-  }}
-/>
-  </div>
-)}
-
-      {/* Sección de explicación */}
-      {explanation && (
-        <div className="explanation-section">
-          <h3>Explicación del cálculo:</h3>
-          <p style={{ whiteSpace: 'pre-line' }}>{explanation}</p>
-        </div>
-      )}
     </div>
   );
 }
