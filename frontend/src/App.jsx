@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Routes, Route } from 'react-router-dom'; // Added imports
-import MacroImpactSimulator from './components/Simulador de Impacto/Simulador'; // Import the component
+import { Link, Routes, Route } from 'react-router-dom'; // Importar rutas
+import MacroImpactSimulator from './components/Simulador de Impacto/Simulador'; // Importar componente
 import TablaCompleta from './components/Simulador de Impacto/CrearTabla/TablaCompleta';
-import RazonesFinancieras from './components/Simulador de Impacto/RazonesF/RazonesFinancieras'; // Import the component
+import RazonesFinancieras from './components/Simulador de Impacto/RazonesF/RazonesFinancieras';
+import Seleccion from './components/calculadora/seleccion'; // Importar Seleccion
+import DACombined from './components/calculadora/DA'; // Importar DA
+import ISCalculator from './components/calculadora/curvaIS'; // Importar IS
+import LMCalculator from './components/calculadora/curvaLM'; // Importar LM
 import './App.css';
 
 function App() {
@@ -46,6 +50,7 @@ function App() {
       ) : (
         <>
           <Routes>
+            {/* Ruta principal */}
             <Route
               path="/"
               element={
@@ -75,7 +80,9 @@ function App() {
                       <div className="tool-card">
                         <h3>Cálculo de IS-LM</h3>
                         <p>Explora el modelo IS-LM para equilibrio macroeconómico.</p>
-                        <button>Ir a herramienta</button>
+                        <Link to="/seleccion">
+                          <button>Ir a calculadora</button>
+                        </Link>
                       </div>
                     </div>
                   </section>
@@ -85,9 +92,14 @@ function App() {
                 </div>
               }
             />
-            <Route path="/simulador" element={<MacroImpactSimulator />} /> {/* Added route */}
+            {/* Rutas adicionales */}
+            <Route path="/simulador" element={<MacroImpactSimulator />} />
             <Route path="/tabla-completa" element={<TablaCompleta />} />
-            <Route path="/razones-financieras" element={<RazonesFinancieras />} /> {/* Added route */}
+            <Route path="/razones-financieras" element={<RazonesFinancieras />} />
+            <Route path="/seleccion" element={<Seleccion />} />
+            <Route path="/da" element={<DACombined />} />
+            <Route path="/is" element={<ISCalculator />} />
+            <Route path="/lm" element={<LMCalculator />} />
           </Routes>
         </>
       )}
