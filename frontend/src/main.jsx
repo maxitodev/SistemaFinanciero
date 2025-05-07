@@ -6,7 +6,7 @@ import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter> {/* Added BrowserRouter */}
+    <BrowserRouter basename="/SistemaFinanciero"> {/* Agregado basename */}
       <App />
     </BrowserRouter>
   </StrictMode>,

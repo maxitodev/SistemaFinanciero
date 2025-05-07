@@ -121,3 +121,19 @@
     font-size: 0.9rem;
   }
 }
+.table-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.table-section th, .table-section td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.table-section th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}

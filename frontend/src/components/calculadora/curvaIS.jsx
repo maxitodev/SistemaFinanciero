@@ -18,6 +18,7 @@ function ISCalculator() {
   });
 
   const [graphData, setGraphData] = useState(null); // Datos para la gráfica
+  const [tableData, setTableData] = useState([]); // Datos para la tabla
   const [explanation, setExplanation] = useState(''); // Explicación del cálculo
   const [ISResult, setISResult] = useState('');
 
@@ -30,90 +31,71 @@ function ISCalculator() {
       const G = parseFloat(params.G) || 0;
       const I0 = parseFloat(params.I0) || 0;
       const I1 = parseFloat(params.I1) || 0;
-
-      // Generar valores para la gráfica
-      const iValues = Array.from({ length: 11 }, (_, idx) => idx * 0.1); // Tasa de interés de 0% a 1%
-      const yValues = iValues.map(i => {
-        const Yd = (1 - t) * (C0 + b * TR); // Ingreso disponible
-        const I = I0 - I1 * i; // Inversión dependiente de la tasa de interés
-        const Y = C0 + b * Yd + I + G; // Demanda agregada en equilibrio
-        return Y.toFixed(2);
+  
+      // Calcular los coeficientes de la ecuación IS
+      const Yd_const = (1 - t) * (C0 + b * TR); // Parte constante del ingreso disponible
+      const C_const = C0 + b * Yd_const; // Parte constante del consumo
+      const IS_const = (C0 + I0 + G) / (1 - b);
+      const IS_coef = -I1 / (1 - b);
+  
+      // Generar la ecuación de la curva IS
+      const IS_equation = `Y = ${IS_const.toFixed(2)} + (${IS_coef.toFixed(2)} * i)`;
+  
+      // Generar una tabla de valores para i y Y
+      const iValues = Array.from({ length: 11 }, (_, idx) => idx * 0.1); // Tasa de interés de 0 a 1
+      const table = iValues.map(i => {
+        const Y = IS_const + IS_coef * i; // Calcular Y para cada i
+        return { i: i.toFixed(2), Y: Y.toFixed(2) };
       });
-
+  
+      // Graficar la curva IS
       setGraphData({
-        labels: iValues.map(i => i.toFixed(2)),
+        labels: table.map(row => row.i), // Etiquetas del eje X (valores de i)
         datasets: [
           {
             label: 'Curva IS',
-            data: yValues,
+            data: table.map(row => row.Y), // Valores del eje Y (valores de Y)
             borderColor: 'blue',
             backgroundColor: 'rgba(0, 0, 255, 0.2)',
             tension: 0.4,
           },
         ],
       });
-
-      // Asumir el resultado para i = 0 (primer elemento)
-      setISResult(yValues[0]);
-
-      // Generar explicación detallada del cálculo
-      const steps = iValues.map(i => {
-        const Yd = ((1 - t) * (C0 + b * TR)).toFixed(2); // Ingreso disponible
-        const I = (I0 - I1 * i).toFixed(2); // Inversión
-        const Y = (C0 + b * Yd + parseFloat(I) + G).toFixed(2); // Ingreso en equilibrio
-        return `Para i = ${i.toFixed(2)}:
-          1. Ingreso disponible (Yd) = (1 - t) * (C0 + b * TR)
-             Yd = (1 - ${t}) * (${C0} + ${b} * ${TR}) = ${Yd}
-          2. Inversión (I) = I0 - I1 * i
-             I = ${I0} - ${I1} * ${i.toFixed(2)} = ${I}
-          3. Ingreso en equilibrio (Y) = C0 + b * Yd + I + G
-             Y = ${C0} + ${b} * ${Yd} + ${I} + ${G} = ${Y}`;
-      }).join('\n\n');
-
+  
+      // Mostrar los pasos para encontrar la ecuación
       setExplanation(`
-        La curva IS se calculó utilizando la ecuación de equilibrio del mercado de bienes:
-        Y = C + I + G
-
-        Donde:
-        - C: Consumo
-        - I: Inversión
-        - G: Gasto público
-
-        Fórmulas utilizadas:
-        1. Consumo (C):
-           C = C0 + b * Yd
-           Yd = Y(1 - t) + TR
-           Donde:
-           - C0: Consumo autónomo (${C0})
-           - b: Propensión marginal a consumir (${b})
-           - t: Tasa impositiva (${t})
-           - TR: Transferencias del gobierno (${TR})
-
-        2. Inversión (I):
-           I = I0 - I1 * i
-           Donde:
-           - I0: Inversión autónoma (${I0})
-           - I1: Sensibilidad de la inversión a la tasa de interés (${I1})
-           - i: Tasa de interés (valores de 0 a 1)
-
-        3. Demanda agregada (DA):
-           DA = C + I + G
-           Donde:
-           - G: Gasto público (${G})
-
-        Pasos generales:
-        1. Se calcula el ingreso disponible (Yd) como:
-           Yd = (1 - t) * (C0 + b * TR)
-        2. Se calcula el consumo (C) utilizando:
-           C = C0 + b * Yd
-        3. Se calcula la inversión (I) para cada valor de la tasa de interés (i):
-           I = I0 - I1 * i
-        4. Finalmente, se calcula el ingreso (Y) en equilibrio para cada valor de i:
+        **Pasos para encontrar la ecuación de la curva IS:**
+        
+        1. Partimos del equilibrio del mercado de bienes:
            Y = C + I + G
-
-        Cálculos paso a paso para cada valor de i:
-        ${steps}
-      `);
+        
+        2. Sustituimos las funciones de consumo e inversión:
+           C = C₀ + bY
+           I = I₀ - I₁i
+        
+           Entonces:
+           Y = (C₀ + bY) + (I₀ - I₁i) + G
+        
+        3. Agrupamos términos:
+           Y - bY = C₀ + I₀ + G - I₁i
+           Y(1 - b) = C₀ + I₀ + G - I₁i
+        
+        4. Despejamos Y:
+           Y = (C₀ + I₀ + G) / (1 - b) - (I₁ / (1 - b)) * i
+        
+        5. Sustituimos valores:
+           Y = (${C0} + ${I0} + ${G}) / (1 - ${b}) - (${I1} / (1 - ${b})) * i
+           Y = ${(IS_const).toFixed(2)} + (${IS_coef.toFixed(2)} * i)
+        
+        **Ecuación de la curva IS:**
+        Y = ${IS_const.toFixed(2)} + (${IS_coef.toFixed(2)} * i)
+        `);
+  
+      // Guardar los datos de la tabla en el estado
+      setTableData(table);
+  
+      // Mostrar la ecuación como resultado
+      setISResult(IS_equation);
     } catch (error) {
       console.error('Error en cálculo:', error);
       setExplanation('Error en los cálculos: ' + error.message);
@@ -133,13 +115,13 @@ function ISCalculator() {
             {Object.keys(params).map(key => (
               <div key={key} className="input-group">
                 <label>
-                  {key === 'C0' && 'C0 (Consumo autónomo):'}
-                  {key === 'b' && 'b (Propensión marginal a consumir):'}
-                  {key === 'TR' && 'TR (Transferencias del gobierno):'}
+                  {key === 'C0' && 'C0 (Consumo autónomo = c en la variable C):'}
+                  {key === 'b' && 'b (Propensión marginal a consumir = y de la variable C):'}
+                  {key === 'TR' && 'TR (Transferencias del gobierno ):'}
                   {key === 't' && 't (Tasa impositiva):'}
                   {key === 'G' && 'G (Gasto público):'}
-                  {key === 'I0' && 'I0 (Inversión autónoma):'}
-                  {key === 'I1' && 'I1 (Sensibilidad de la inversión a la tasa de interés):'}
+                  {key === 'I0' && 'I0 (Inversión autónoma = al primer valor en la variable I):'}
+                  {key === 'I1' && 'I1 (Sensibilidad de la inversión a la tasa de interés = al segundo valor en la variable I):'}
                 </label>
                 <input
                   type="number"
@@ -152,10 +134,42 @@ function ISCalculator() {
           <button onClick={calculateIS}>Calcular IS</button>
           {ISResult !== '' && (
             <div className="result-section">
-              <h3>Resultado IS: Y = {ISResult}</h3>
+              <h3>Resultado IS: {ISResult}</h3>
             </div>
           )}
         </div>
+
+        {/* Sección de explicación */}
+        {explanation && (
+          <div className="explanation-section">
+            <h3>Explicación del cálculo:</h3>
+            <p style={{ whiteSpace: 'pre-line' }}>{explanation}</p>
+          </div>
+        )}
+
+
+        {/* Sección de tabla */}
+        {tableData.length > 0 && (
+          <div className="table-section">
+            <h3>Tabla de valores:</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tasa de interés (i)</th>
+                  <th>Ingreso (Y)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tableData.map((row, index) => (
+                  <tr key={index}>
+                    <td>{row.i}</td>
+                    <td>{row.Y}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         {/* Sección de gráfica */}
         {graphData && (
@@ -170,15 +184,15 @@ function ISCalculator() {
                     position: 'top',
                     labels: {
                       font: {
-                        size: 14, // Tamaño de la fuente de la leyenda
-                        family: 'Arial', // Fuente de la leyenda
+                        size: 14,
+                        family: 'Arial',
                       },
-                      color: '#333', // Color del texto de la leyenda
+                      color: '#333',
                     },
                   },
                   tooltip: {
                     enabled: true,
-                    backgroundColor: 'rgba(0, 0, 0, 0.7)', // Fondo del tooltip
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
                     titleFont: {
                       size: 14,
                       family: 'Arial',
@@ -187,7 +201,7 @@ function ISCalculator() {
                       size: 12,
                       family: 'Arial',
                     },
-                    bodyColor: '#fff', // Color del texto del tooltip
+                    bodyColor: '#fff',
                   },
                 },
                 layout: {
@@ -202,77 +216,69 @@ function ISCalculator() {
                   x: {
                     title: {
                       display: true,
-                      text: 'Tasa de interés (i)', // Nombre del eje X
+                      text: 'Tasa de interés (i)',
                       font: {
-                        size: 16, // Tamaño de la fuente
-                        family: 'Arial', // Fuente del título
-                        weight: 'bold', // Negrita
+                        size: 16,
+                        family: 'Arial',
+                        weight: 'bold',
                       },
-                      color: '#333', // Color del texto
+                      color: '#333',
                     },
                     grid: {
-                      color: 'rgba(200, 200, 200, 0.3)', // Color de las líneas de la cuadrícula
+                      color: 'rgba(200, 200, 200, 0.3)',
                     },
                     ticks: {
                       font: {
                         size: 12,
                         family: 'Arial',
                       },
-                      color: '#333', // Color de las etiquetas
+                      color: '#333',
                     },
                   },
                   y: {
                     title: {
                       display: true,
-                      text: 'Ingreso (Y)', // Nombre del eje Y
+                      text: 'Ingreso (Y)',
                       font: {
-                        size: 16, // Tamaño de la fuente
-                        family: 'Arial', // Fuente del título
-                        weight: 'bold', // Negrita
+                        size: 16,
+                        family: 'Arial',
+                        weight: 'bold',
                       },
-                      color: '#333', // Color del texto
+                      color: '#333',
                     },
                     grid: {
-                      color: 'rgba(200, 200, 200, 0.3)', // Color de las líneas de la cuadrícula
+                      color: 'rgba(200, 200, 200, 0.3)',
                     },
                     ticks: {
                       font: {
                         size: 12,
                         family: 'Arial',
                       },
-                      color: '#333', // Color de las etiquetas
+                      color: '#333',
                     },
                   },
                 },
                 elements: {
                   line: {
-                    borderWidth: 3, // Grosor de la línea
-                    borderColor: '#007bff', // Color de la línea
-                    tension: 0.4, // Suavizar la línea
+                    borderWidth: 3,
+                    borderColor: '#007bff',
+                    tension: 0.4,
                   },
                   point: {
-                    radius: 5, // Tamaño de los puntos
-                    backgroundColor: '#007bff', // Color de los puntos
-                    borderWidth: 2, // Grosor del borde de los puntos
-                    borderColor: '#fff', // Color del borde de los puntos
+                    radius: 5,
+                    backgroundColor: '#007bff',
+                    borderWidth: 2,
+                    borderColor: '#fff',
                   },
                 },
                 animation: {
-                  duration: 1000, // Duración de la animación en milisegundos
-                  easing: 'easeInOutQuad', // Tipo de animación
+                  duration: 1000,
+                  easing: 'easeInOutQuad',
                 },
-                responsive: true, // Ajuste automático al tamaño del contenedor
-                maintainAspectRatio: true, // Mantener la relación de aspecto
+                responsive: true,
+                maintainAspectRatio: true,
               }}
             />
-          </div>
-        )}
-
-        {/* Sección de explicación */}
-        {explanation && (
-          <div className="explanation-section">
-            <h3>Explicación del cálculo:</h3>
-            <p style={{ whiteSpace: 'pre-line' }}>{explanation}</p>
           </div>
         )}
       </div>
