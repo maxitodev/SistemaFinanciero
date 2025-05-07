@@ -121,3 +121,9 @@
     font-size: 0.9rem;
   }
 }
+
+.container h3 {
+  margin-top: 2vh;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}

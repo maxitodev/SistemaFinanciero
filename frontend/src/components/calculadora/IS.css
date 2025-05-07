@@ -137,3 +137,9 @@
   background-color: #f4f4f4;
   font-weight: bold;
 }
+
+.container h3 {
+  margin-top: 2vh;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
