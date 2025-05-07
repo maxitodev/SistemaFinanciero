@@ -8,7 +8,9 @@
     font-family: 'Segoe UI', system-ui, sans-serif;
     text-align: center;
 }
-
+.button-container {
+    position: center; /* Asegura que el botón esté contenido dentro de este contenedor */
+  }
 .da-container h2 {
     font-size: 2rem;
     color: #2c3e50;

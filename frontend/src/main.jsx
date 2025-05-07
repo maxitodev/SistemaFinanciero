@@ -1,13 +1,13 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom'; // Added import
+import { HashRouter } from 'react-router-dom'; // Cambiar a HashRouter
 import './index.css';
 import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename="/SistemaFinanciero"> {/* Agregado basename */}
+    <HashRouter>
       <App />
-    </BrowserRouter>
-  </StrictMode>,
+    </HashRouter>
+  </StrictMode>
 );

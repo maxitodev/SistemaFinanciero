@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip } from 'chart.js';
 import './DA.css';
-
+import { Link } from 'react-router-dom'; // Importar rutas
 // Registrar los componentes de Chart.js
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip);
 
@@ -98,6 +98,11 @@ function DACombined() {
 
   return (
     <div className="da-container">
+       <div className="button-container">
+        <Link to="/seleccion">
+          <button className="top-left-button">Ir a calculadora</button>
+        </Link>
+      </div>
       <h2>Calculadora de Demanda Agregada (DA)</h2>
       <p>Usa esta calculadora para ingresar parámetros económicos y visualizar el impacto en la demanda agregada.</p>
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './RazonesF.css'; 
+import { Link, Routes, Route } from 'react-router-dom'; // Importar rutas
 
 function RazonesFinancieras() {
 	const [data, setData] = useState(null);
@@ -317,6 +318,11 @@ function RazonesFinancieras() {
 		
 		return (
 			<div className="razonesfinancieras">
+				<div className="button-container">
+						<Link to="/">
+						  <button className="top-left-button">Menú principal</button>
+						</Link>
+				</div>
 				<div className="container"> {/* Agregado para aplicar el mismo CSS */}
 					<div className="simulation-results">
 						<h1>Comparación de Estado de Resultados</h1>
@@ -514,7 +520,13 @@ function RazonesFinancieras() {
 
 	if (showSimulationForm) {
 		return (
+			
 			<div className="simulacion-form">
+				<div className="button-container">
+						<Link to="/">
+						  <button className="top-left-button">Menú principal</button>
+						</Link>
+					  </div>
 				<h2>Ingrese Variables Macroeconómicas</h2>
 				{/* Explicación de los efectos de cada variable */}
 				<p className="macroeconomic-explanation">
@@ -587,6 +599,11 @@ function RazonesFinancieras() {
 
 	return (
 		<div className="razonesfinancieras">
+			<div className="button-container">
+				<Link to="/">
+				  <button className="top-left-button">Menú principal</button>
+				</Link>
+			</div>
 			<h1>Estado de Resultados</h1>
 			<div className="financial-tables-container"> {/* Added container */}
 				<table className="estado-resultados-table">

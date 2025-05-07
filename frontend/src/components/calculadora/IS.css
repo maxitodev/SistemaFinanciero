@@ -16,6 +16,28 @@
   font-weight: 600;
 }
 
+.button-container {
+  position: center; /* Asegura que el botón esté contenido dentro de este contenedor */
+}
+
+.top-left-button {
+  position: absolute; /* Posiciona el botón de forma absoluta */
+  top: 1rem; /* Espaciado desde la parte superior */
+  left: 1rem; /* Espaciado desde la parte izquierda */
+  padding: 0.5rem 1rem; /* Espaciado interno del botón */
+  background-color: #007bff; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 1rem; /* Tamaño de la fuente */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.top-left-button:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el mouse */
+}
 .is-calculator .input-section {
   margin-bottom: 2rem;
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
 import './LM.css';
-
+import { Link } from 'react-router-dom'; // Importar rutas
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 function LMCalculator() {
@@ -92,6 +92,11 @@ function LMCalculator() {
 
   return (
     <div className="lm-calculator">
+      <div className="button-container">
+        <Link to="/seleccion">
+          <button className="top-left-button">Ir a calculadora</button>
+        </Link>
+      </div>
       <div className="container">
         <h2>Calculadora de la Curva LM</h2>
         <p>Utiliza esta calculadora para ingresar parámetros y visualizar la relación entre ingreso y tasa de interés.</p>

@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
 import './IS.css';
-
+import { Link } from 'react-router-dom'; // Importar rutas
 // Registrar los componentes de Chart.js
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
-
+      
 function ISCalculator() {
   const [params, setParams] = useState({
     C0: '20',  // Parte autónoma del consumo
@@ -47,7 +47,7 @@ function ISCalculator() {
         const Y = IS_const + IS_coef * i; // Calcular Y para cada i
         return { i: i.toFixed(2), Y: Y.toFixed(2) };
       });
-  
+      
       // Graficar la curva IS
       setGraphData({
         labels: table.map(row => row.i), // Etiquetas del eje X (valores de i)
@@ -104,6 +104,11 @@ function ISCalculator() {
 
   return (
     <div className="is-calculator">
+      <div className="button-container">
+        <Link to="/seleccion">
+          <button className="top-left-button">Ir a calculadora</button>
+        </Link>
+      </div>
       <div className="container">
         <h2>Calculadora de la Curva IS</h2>
         <p>Utiliza esta calculadora para ingresar parámetros y visualizar el equilibrio del mercado de bienes.</p>

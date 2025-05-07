@@ -1,0 +1,14 @@
+directories:
+  output: dist-electron
+  buildResources: build
+appId: macroview_1.0
+productName: MacroView
+files:
+  - filter:
+      - dist/**/*
+      - src/main.js
+      - src/preload.js
+win:
+  target: nsis
+  icon: public/vite.ico
+electronVersion: 26.6.10

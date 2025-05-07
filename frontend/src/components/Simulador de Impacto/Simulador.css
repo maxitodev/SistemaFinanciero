@@ -13,7 +13,9 @@
   color: #0984e3;
   margin-bottom: 1.5rem;
 }
-
+.button-container {
+  position: center; /* Asegura que el botón esté contenido dentro de este contenedor */
+}
 .macro-impact-simulator p {
   color: #636e72;
   line-height: 1.6;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TablaCompleta.css';
-
+import { Link, Routes, Route } from 'react-router-dom'; // Importar rutas
 function TablaCompleta() {
 	// Estado inicial con estructura unificada
 	const [data, setData] = useState({
@@ -57,6 +57,11 @@ function TablaCompleta() {
 
 	return (
 		<div className="tabla-completa">
+			<div className="button-container">
+        <Link to="/">
+          <button className="top-left-button">Menú principal</button>
+        </Link>
+      </div>
 			<h1>Estado de Resultados Consolidado</h1>
 			<table>
 				<tbody>

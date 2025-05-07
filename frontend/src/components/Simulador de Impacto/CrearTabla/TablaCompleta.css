@@ -13,7 +13,9 @@
   font-size: 2.2rem;
   font-weight: 600;
 }
-
+.button-container {
+  position: center; /* Asegura que el botón esté contenido dentro de este contenedor */
+}
 .tabla-completa table {
   width: 100%;
   border-collapse: collapse;
