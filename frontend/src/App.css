@@ -36,9 +36,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 70vh;
+  min-width: 30vh;
   min-height: 90vh;
-  background: linear-gradient(135deg, #007bff 0%, #0069e5 100%);
+  background: linear-gradient(135deg, #0084ff 0%, #001aff 100%);
   color: white;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow: hidden;

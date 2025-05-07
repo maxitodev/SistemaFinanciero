@@ -44,7 +44,7 @@ function App() {
               <div className="progress-wave"></div>
             </div>
             
-            <p className="status-text">By MacroView</p>
+            <p className="status-text">Desarrollado por Max S, Álvaro R, Irlanda L y Alan L.</p>
           </div>
         </div>
       ) : (
@@ -87,7 +87,9 @@ function App() {
                     </div>
                   </section>
                   <footer className="main-footer">
-                    <p> By MacroView 2025 </p>
+                    <p> Desarrollado por Max S, Álvaro R, Irlanda L y Alan L.
+
+</p>
                   </footer>
                 </div>
               }
